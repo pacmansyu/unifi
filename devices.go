@@ -39,6 +39,7 @@ type Device struct {
 	Radios    []*Radio
 	Serial    string
 	SiteID    string
+	State     int
 	Stats     *DeviceStats
 	Uptime    time.Duration
 	Version   string
@@ -189,6 +190,7 @@ func (d *Device) UnmarshalJSON(b []byte) error {
 		SiteID:    dev.SiteID,
 		Uptime:    time.Duration(time.Duration(dev.Uptime) * time.Second),
 		Version:   dev.Version,
+		State:     dev.State,
 		Stats: &DeviceStats{
 			TotalBytes: dev.Stat.Bytes,
 			All: &WirelessStats{
